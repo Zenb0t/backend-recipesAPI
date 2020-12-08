@@ -1,0 +1,29 @@
+[
+    {
+        "uuid": "9023847723498akjdh29",
+        "name": "Flour",
+        "quantityPerUnit": "4",
+        "measureUnit": "Cup",
+        "brand": "Robin Hood",
+        "price": "3.99",
+        "unitCost": "0.9975"
+    },
+    {
+        "uuid": "092384kjsdf023ksdf",
+        "name": "Egg",
+        "quantityPerUnit": "12",
+        "measureUnit": "Dozen",
+        "brand": "Gold Valley",
+        "price": "6.59",
+        "unitCost": "0.549166666"
+    },
+    {
+        "uuid": "iojhsd0f98wdf20r8fuwd",
+        "name": "Chocolate",
+        "quantityPerUnit": "250",
+        "measureUnit": "grams",
+        "brand": "Lindt",
+        "price": "2.99",
+        "unitCost": "0.01196"
+    }
+]
