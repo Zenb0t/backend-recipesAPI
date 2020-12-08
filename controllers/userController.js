@@ -63,11 +63,11 @@ exports.updateUser = (req, res) => {
     //todo Add validation of req.body
 
     User.findByIdAndUpdate(req.params.id, req.body, { new: true })
-        .then((User) => {
-            if (!User) return res.status(404).send({ message: "User not found" });
-            res.status(200).send(User);
+        .then((user) => {
+            if (!user) return res.status(404).send({ message: "User not found" });
+            res.status(200).send(user);
         })
         .catch((err) => {
-            return res.status(404).send({ message: "Error updating User" })
+            return res.status(404).send({ message: "Error updating user" })
         })
 }
