@@ -4,14 +4,12 @@ const RecipeSchema = new mongoose.Schema({
     uuid: {
         type: String,
         required: true,
-        trim: true,
-        lowercase: true
+        trim: true
     },
     title: {
         type: String,
         required: true,
-        trim: true,
-        lowercase: true
+        trim: true
     },
     ingredientValueMap: {
         type: Map,

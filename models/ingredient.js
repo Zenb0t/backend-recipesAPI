@@ -5,14 +5,12 @@ const IngredientSchema = new mongoose.Schema(
         uuid: {
             type: String,
             required: true,
-            trim: true,
-            lowercase: true
+            trim: true
         },
         name: {
             type: String,
             required: true,
-            trim: true,
-            lowercase: true
+            trim: true
         },
         quantityPerUnit: {
             type: Number,
