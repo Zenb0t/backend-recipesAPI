@@ -1,14 +1,15 @@
 # Recipe API
 
-This is a basic CRUD API implemented in Node, MongoDB and Mongoose.
+This is a basic CRUD API implemented in Node, MongoDB and Mongoose with JWT authentication using Bcrypt and jsonwebtokens.
 
-It manages recipes and ingredients.
+Each user have a collection of recipes and ingredients.
 
-## Recipes
+## Roadmap
 
-TODO: Document API
-
-## Ingredients
-
-TODO:
+basic operations on recipes               ✅
+basic operations on ingredients           ✅
+basic operations on users                 ✅
+User authentication with JWT              ❌
+Refactor routes on express                ❌
+Advanced queries (by multiple params)     ❌
 
