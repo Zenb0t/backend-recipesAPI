@@ -1,7 +1,10 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
+const querystring = require("querystring");
 
 //Create a new User
+
 exports.create = (req, res) => {
     //let User = req.body;
     //todo: add validation
@@ -12,15 +15,15 @@ exports.create = (req, res) => {
         email: req.body.email,
         password: hashedPass
     });
-    User.save()
+    user.save()
         .then((user) => res.send(user))
         .catch((err) => {
             res.status(500).send({ message: err.message || "Error when creating user" })
         })
 }
 
-
 //Return all Users from the db
+
 exports.findAll = (req, res) => {
     User.find()
         .then((users) => {
@@ -32,6 +35,7 @@ exports.findAll = (req, res) => {
 }
 
 //Return an User by id
+
 exports.findOne = (req, res) => {
     User.findById(req.params.id)
         .then((user) => {
@@ -51,6 +55,7 @@ exports.findOne = (req, res) => {
 }
 
 //Remove User from the db
+
 exports.delete = (req, res) => {
     User.findByIdAndDelete(req.params.id)
         .then((user) => {
@@ -75,4 +80,59 @@ exports.updateUser = (req, res) => {
         .catch((err) => {
             return res.status(404).send({ message: "Error updating user" })
         })
+}
+
+// Register
+
+exports.register = (req, res) => {
+
+}
+
+// Login
+
+exports.login = (req, res) => {
+    res.redirect("/");
+}
+
+// Logout
+
+exports.logout = (req, res) => {
+    req.logOut();
+
+    let returnTo = req.protocol + "://" + req.hostname;
+    const port = req.connection.localPort;
+
+    if (port !== undefined && port !== 80 && port !== 443) {
+        returnTo =
+            process.env.NODE_ENV === "production"
+                ? `${returnTo}/`
+                : `${returnTo}:${port}/`;
+    }
+
+    const logOutURL = new URL(`https://${process.env.AUTH0_DOMAIN}/v2/logout`);
+
+    const searcString = querystring.stringify({
+        clientid: process.env.AUTH0_CLIENT_ID,
+        returnTo: returnTo
+    });
+    logOutURL.search = searcString;
+
+    res.redirect(logOutURL);
+}
+
+//Callback for authentication
+
+exports.callback = (req, res, next) => {
+    passport.authenticate("auth0", (err, user, info) => {
+
+        if (err) return next(err);
+        if (!user) return res.redirect("/login");
+
+        req.logIn(user, (err) => {
+            if (err) return next(err);
+            const returnTo = req.session.returnTo;
+            delete req.session.returnTo;
+            res.redirect(returnTo || "/");
+        });
+    })(req, res, next);
 }
