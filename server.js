@@ -25,7 +25,7 @@ const session = {
 if (app.get("env") === "production") {
     // Serve secure cookies, requires HTTPS
     session.cookie.secure = true;
-}
+} 
 
 // Passport Configuration
 
